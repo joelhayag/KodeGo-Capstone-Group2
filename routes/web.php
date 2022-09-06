@@ -45,3 +45,10 @@ Route::get('/contact', function () {
     return view('Layout.FrontEnd.Shop');
 })->name('contact');
 
+
+
+// Admin
+Route::get('/admin', function () {
+    return view('Layout.FrontEnd.Admin.DashboardAdmin');
+})->name('admin');
+
