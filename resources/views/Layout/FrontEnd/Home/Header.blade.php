@@ -5,7 +5,7 @@
               <div class="col-lg-6 col-md-6">
                   <div class="header__top__left">
                       <ul>
-                          <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                          <li><i class="fa fa-envelope"></i> {{ env('MAIL_FROM_ADDRESS') }}</li>
                           <li>Free Shipping for all Order of $99</li>
                       </ul>
                   </div>
@@ -39,24 +39,24 @@
       <div class="row">
           <div class="col-lg-3">
               <div class="header__logo">
-                  <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                  <a href="{{ route('home') }}"><img src="img/logo.png" alt=""></a>
               </div>
           </div>
           <div class="col-lg-6">
               <nav class="header__menu">
                   <ul>
-                      <li class="active"><a href="./index.html">Home</a></li>
-                      <li><a href="./shop-grid.html">Shop</a></li>
+                      <li class="{{ (Route::is('home')) ? 'active' : '' }}"><a href="{{ route('home') }}">Home</a></li>
+                      <li class="{{ (Route::is('shop')) ? 'active' : '' }}"><a href="{{ route('shop') }}">Shop</a></li>
                       <li><a href="#">Pages</a>
                           <ul class="header__menu__dropdown">
-                              <li><a href="./shop-details.html">Shop Details</a></li>
-                              <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                              <li><a href="./checkout.html">Check Out</a></li>
-                              <li><a href="./blog-details.html">Blog Details</a></li>
+                              <li><a href="{{ route('shopdetails') }}">Shop Details</a></li>
+                              <li><a href="{{ route('cart') }}">Shoping Cart</a></li>
+                              <li><a href="{{ route('checkout') }}">Check Out</a></li>
+                              <li><a href="{{ route('blog') }}">Blog Details</a></li>
                           </ul>
                       </li>
-                      <li><a href="./blog.html">Blog</a></li>
-                      <li><a href="./contact.html">Contact</a></li>
+                      <li class="{{ (Route::is('blogs')) ? 'active' : '' }}"><a href="{{ route('blogs') }}">Blog</a></li>
+                      <li class="{{ (Route::is('contact')) ? 'active' : '' }}"><a href="{{ route('contact') }}">Contact</a></li>
                   </ul>
               </nav>
           </div>
@@ -64,7 +64,7 @@
               <div class="header__cart">
                   <ul>
                       <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                      <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                      <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                   </ul>
                   <div class="header__cart__price">item: <span>$150.00</span></div>
               </div>
