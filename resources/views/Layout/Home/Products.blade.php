@@ -20,10 +20,10 @@
                                             <span>{{ $product->product_price }}</span>
                                         </div>
                                     </a>
-                                    @php
-                                        $count++;
-                                    @endphp
                                 @endif
+                                @php
+                                    $count++;
+                                @endphp
                             @endforeach
 
                             <!--<a href="#" class="latest-product__item">
@@ -55,6 +55,9 @@
                             </a>-->
                         </div>
                         <div class="latest-prdouct__slider__item">
+                            @php
+                                $count = 0;
+                            @endphp
                             @foreach ($latests as $product)
                                 @if ($count > 2)
                                     <a href="#" class="latest-product__item">
@@ -66,10 +69,10 @@
                                             <span>{{ $product->product_price }}</span>
                                         </div>
                                     </a>
-                                    @php
-                                        $count++;
-                                    @endphp
                                 @endif
+                                @php
+                                    $count++;
+                                @endphp
                             @endforeach
                         </div>
                     </div>
