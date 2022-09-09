@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
+
 
 return new class extends Migration
 {
@@ -15,15 +17,28 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->string('app_name')->default('ALPRESKO');
-            $table->string('app_email')->default('ALPRESKO@gmail.com');
-            $table->string('app_mobile')->default('+6390000000000');
-            $table->string('app_open_time')->default('24/7');
-            $table->string('app_map_url')->default('');
-            $table->string('app_address')->default('Manila');
-            $table->integer('app_shipping_fee')->default('50');
+            $table->string('app_name');
+            $table->string('app_email');
+            $table->string('app_mobile');
+            $table->string('app_open_time');
+            $table->string('app_map_url');
+            $table->string('app_address');
+            $table->integer('app_shipping_fee');
             $table->timestamps();
         });
+
+        // Insert some stuff
+        DB::table('settings')->insert(
+            array(
+                'app_name' => 'ALPRESKO',
+                'app_email' => 'ALPRESKO@gmail.com',
+                'app_mobile' => '+6390000000000',
+                'app_open_time' => '24/7',
+                'app_map_url' => '',
+                'app_address' => 'Manila',
+                'app_shipping_fee' => '50'
+            )
+        );
     }
 
     /**

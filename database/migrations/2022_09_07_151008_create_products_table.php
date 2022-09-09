@@ -18,9 +18,6 @@ return new class extends Migration
             $table->string('product_name');
             $table->string('product_thumbnail');
 
-            $table->unsignedBigInteger('product_img_collection');
-            $table->foreign('product_img_collection')->references('id')->on('images');
-
             $table->string('product_desc');
             $table->integer('product_price');
             $table->float('product_weight');

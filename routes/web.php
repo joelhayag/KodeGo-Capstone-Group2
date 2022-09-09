@@ -1,6 +1,9 @@
 <?php
 
+use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
+use App\Models\Social;
+use App\Models\Banner;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('Layout.FrontEnd.Home');
+    return view('Layout.FrontEnd.Home')
+    ->with('settings', Setting::first())
+    ->with('socials', Social::all())
+    ->with('banners', Banner::all());
 })->name('home');
 
 Route::get('/shop', function () {
