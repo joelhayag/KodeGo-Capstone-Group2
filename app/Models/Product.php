@@ -33,24 +33,20 @@ class Product extends Model
     {
         return $this->hasMany(Images::class);
     }
-    public function department()
-    {
-        return $this->belongsTo(Department::class);
-    }
-    public function category()
-    {
-        return $this->hasOne(Category::class);
-    }
     public function vendor()
     {
         return $this->belongsTo(AppUser::class);
     }
-    public function banner()
-    {
-        return $this->hasOne(Banner::class);
-    }
     public function banner_department($id){
         $department = Department::find($id);
         return $department;
+    }
+    public function category($id){
+        $category = Category::find($id);
+        return $category;
+    }
+    public function vendor_specific($id){
+        $vendor = AppUser::find($id);
+        return $vendor;
     }
 }

@@ -2,23 +2,23 @@
     @section('content')
 
         <!-- Categories Section Begin -->
-        @include('Layout.FrontEnd.Home.Categories')
+        @include('Layout.Home.Categories')
         <!-- Categories Section End -->
 
         <!-- Featured Section Begin -->
-        @include('Layout.FrontEnd.Home.FeaturedProducts')
+        @include('Layout.Home.FeaturedProducts')
         <!-- Featured Section End -->
 
         <!-- Banner Begin -->
-        @include('Layout.FrontEnd.Home.Banners');
+        @include('Layout.Home.Banners');
         <!-- Banner End -->
 
         <!-- Latest Product Section Begin -->
-        @include('Layout.FrontEnd.Home.Products')
+        @include('Layout.Home.Products')
         <!-- Latest Product Section End -->
 
         <!-- Blog Section Begin -->
-        @include('Layout.FrontEnd.Home.Blogs')
+        @include('Layout.Home.Blogs')
         <!-- Blog Section End -->
 
     @endsection
