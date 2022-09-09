@@ -80,7 +80,7 @@
     <!-- Humberger End -->
 
     <!-- Header Section Begin -->
-    @include('Layout.Home.Header')
+    @include('Layout.FrontEnd.Home.Header')
     <!-- Header Section End -->
 
     <!-- Hero Section Begin -->
@@ -89,7 +89,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="hero__categories">
-                        @include('Layout.Home.Departments')
+                        @include('Layout.FrontEnd.Home.Departments')
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -109,13 +109,13 @@
                                 <i class="fa fa-phone"></i>
                             </div>
                             <div class="hero__search__phone__text">
-                                <h5>{{ $settings->app_mobile }}</h5>
-                                <span>support {{ $settings->app_open_time }} time</span>
+                                <h5>+65 11.188.888</h5>
+                                <span>support 24/7 time</span>
                             </div>
                         </div>
                     </div>
                     @if(Route::is('home'))
-                       @include('Layout.Home.HeroSection')
+                       @include('Layout.FrontEnd.Home.HeroSection')
                     @endif
                 </div>
             </div>

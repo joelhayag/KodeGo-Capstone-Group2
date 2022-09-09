@@ -3,19 +3,19 @@
 
         <!-- Hero Section Begin -->
         @if(Route::is('shop'))
-            @include('Layout.Shop.Products')
+            @include('Layout.FrontEnd.Shop.Products')
         @elseif(Route::is('shopdetails'))
-            @include('Layout.Shop.ShopDetails')
+            @include('Layout.FrontEnd.Shop.ShopDetails')
         @elseif(Route::is('cart'))
-            @include('Layout.Shop.ShoppingCart')
+            @include('Layout.FrontEnd.Shop.ShoppingCart')
         @elseif(Route::is('checkout'))
-            @include('Layout.Shop.Checkout')
+            @include('Layout.FrontEnd.Shop.Checkout')
         @elseif(Route::is('blogs'))
-            @include('Layout.Shop.Blogs')
+            @include('Layout.FrontEnd.Shop.Blogs')
         @elseif(Route::is('blog'))
-            @include('Layout.Shop.BlogDetails')
+            @include('Layout.FrontEnd.Shop.BlogDetails')
         @elseif(Route::is('contact'))
-            @include('Layout.Shop.Contact')
+            @include('Layout.FrontEnd.Shop.Contact')
         @endif
 
         <!-- Hero Section End -->
