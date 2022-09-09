@@ -4,8 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Images;
+use App\Models\Department;
+use App\Models\Category;
+use App\Models\AppUser;
+use App\Models\Banner;
 
-class Products extends Model
+class Product extends Model
 {
     use HasFactory;
 
@@ -42,6 +47,10 @@ class Products extends Model
     }
     public function banner()
     {
-        return $this->belongsTo(Banner::class);
+        return $this->hasOne(Banner::class);
+    }
+    public function banner_department($id){
+        $department = Department::find($id);
+        return $department;
     }
 }
