@@ -5,27 +5,17 @@
               <div class="col-lg-6 col-md-6">
                   <div class="header__top__left">
                       <ul>
-                          <li><i class="fa fa-envelope"></i> {{ env('MAIL_FROM_ADDRESS') }}</li>
-                          <li>Free Shipping for all Order of $99</li>
+                          <li><i class="fa fa-envelope"></i> {{ $settings->app_email }}</li>
+                          <li>Shipping fee {{ $settings->app_shipping_fee }}</li>
                       </ul>
                   </div>
               </div>
               <div class="col-lg-6 col-md-6">
                   <div class="header__top__right">
                       <div class="header__top__right__social">
-                          <a href="#"><i class="fa fa-facebook"></i></a>
-                          <a href="#"><i class="fa fa-twitter"></i></a>
-                          <a href="#"><i class="fa fa-linkedin"></i></a>
-                          <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                      </div>
-                      <div class="header__top__right__language">
-                          <img src="img/language.png" alt="">
-                          <div>English</div>
-                          <span class="arrow_carrot-down"></span>
-                          <ul>
-                              <li><a href="#">Spanis</a></li>
-                              <li><a href="#">English</a></li>
-                          </ul>
+                        @foreach($socials as $social)
+                            <a href="{{ $social->social_url }}"><i class="fa fa-{{ $social->social_name }}"></i></a>
+                        @endforeach
                       </div>
                       <div class="header__top__right__auth">
                           <a href="#"><i class="fa fa-user"></i> Login</a>
@@ -39,7 +29,7 @@
       <div class="row">
           <div class="col-lg-3">
               <div class="header__logo">
-                  <a href="{{ route('home') }}"><img src="img/logo.png" alt=""></a>
+                  <a href="{{ route('home') }}"><h2 class="text-center">{{ $settings->app_name }}</h2></a>
               </div>
           </div>
           <div class="col-lg-6">
