@@ -4,7 +4,9 @@
 </div>
 <ul>
     @foreach ($departments as $department)
-        <li><a href="#">{{ $department->department_name }}</a></li>
+        @if($department->department_status == 'passed')
+            <li><a href="#">{{ $department->department_name }}</a></li>
+        @endif
     @endforeach
     <!--<li><a href="#">Fresh Meat</a></li>
     <li><a href="#">Vegetables</a></li>
