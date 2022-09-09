@@ -4,6 +4,7 @@ use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
 use App\Models\Social;
 use App\Models\Banner;
+use App\Models\Department;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,8 @@ Route::get('/', function () {
     return view('Layout.FrontEnd.Home')
     ->with('settings', Setting::first())
     ->with('socials', Social::all())
-    ->with('banners', Banner::all());
+    ->with('banners', Banner::first())
+    ->with('departments', Department::all());
 })->name('home');
 
 Route::get('/shop', function () {

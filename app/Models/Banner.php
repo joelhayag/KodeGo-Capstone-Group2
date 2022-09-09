@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Product;
 
 class Banner extends Model
 {
@@ -18,6 +19,7 @@ class Banner extends Model
     ];
     public function product()
     {
-        return $this->hasOne(Product::class);
+        return $this->belongsTo(Product::class);
     }
+
 }
