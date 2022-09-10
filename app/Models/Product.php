@@ -9,6 +9,7 @@ use App\Models\Department;
 use App\Models\Category;
 use App\Models\AppUser;
 use App\Models\Banner;
+use Hamcrest\Core\HasToString;
 
 class Product extends Model
 {
@@ -33,24 +34,29 @@ class Product extends Model
     {
         return $this->hasMany(Images::class);
     }
-    public function department()
-    {
-        return $this->belongsTo(Department::class);
-    }
-    public function category()
-    {
-        return $this->hasOne(Category::class);
-    }
     public function vendor()
     {
         return $this->belongsTo(AppUser::class);
     }
-    public function banner()
-    {
-        return $this->hasOne(Banner::class);
-    }
-    public function banner_department($id){
-        $department = Department::find($id);
+    public function banner_department($banner_id){
+        $department = Department::find($banner_id);
         return $department;
+    }
+    public function category($category_id){
+        $category = Category::find($category_id);
+        return $category;
+    }
+    public function department($department_id){
+        $department = Department::find($department_id);
+        return $department;
+    }
+    public function vendor_specific($vendor_id){
+        $vendor = AppUser::find($vendor_id);
+        return $vendor;
+    }
+
+    public function related_products($category_id){
+        $products = Product::all()->where('product_category_id', '=', $category_id);
+        return  $products;
     }
 }

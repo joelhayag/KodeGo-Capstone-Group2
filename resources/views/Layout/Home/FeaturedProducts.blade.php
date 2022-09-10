@@ -8,16 +8,33 @@
                 <div class="featured__controls">
                     <ul>
                         <li class="active" data-filter="*">All</li>
-                        <li data-filter=".oranges">Oranges</li>
-                        <li data-filter=".fresh-meat">Fresh Meat</li>
-                        <li data-filter=".vegetables">Vegetables</li>
-                        <li data-filter=".fastfood">Fastfood</li>
+                        @foreach ($categories as $category)
+                            <li data-filter=".{{ str_replace(' ', '_', $category->category_name) }}">{{ $category->category_name }}</li>
+                        @endforeach
+
                     </ul>
                 </div>
             </div>
         </div>
         <div class="row featured__filter">
-            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+            @foreach ($products as $product)
+                <div class="col-lg-3 col-md-4 col-sm-6 mix {{ str_replace(' ', '_', $product->category($product->product_category_id)->category_name) }} fresh-meat">
+                    <div class="featured__item">
+                        <div class="featured__item__pic set-bg" data-setbg="{{ $product->product_thumbnail }}">
+                            <ul class="featured__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a href="#">{{ $product->product_name }}</a></h6>
+                            <h5>₱ {{ $product->product_price }}</h5>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+
+            <!--<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                 <div class="featured__item">
                     <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
                         <ul class="featured__item__pic__hover">
@@ -136,7 +153,7 @@
                         <h5>$30.00</h5>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 </section>
