@@ -6,74 +6,106 @@
                     <h4>Latest Products</h4>
                     <div class="latest-product__slider owl-carousel">
                         <div class="latest-prdouct__slider__item">
-                            @php
-                                $count = 0;
-                            @endphp
-                            @foreach ($latests as $product)
-                                @if ($count < 3)
-                                    <a href="shopdetails/{{$product->id }}" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="{{ $product->product_thumbnail }}" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>{{ $product->product_name }}</h6>
-                                            <span>₱ {{ $product->product_price }}</span>
-                                        </div>
-                                    </a>
-                                @endif
+                            @if ($latests)
                                 @php
-                                    $count++;
+                                    $count = 0;
                                 @endphp
-                            @endforeach
-
-                            <!--<a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/latest-product/lp-1.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/latest-product/lp-2.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/latest-product/lp-3.jpg" alt="">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Crab Pool Security</h6>
-                                    <span>$30.00</span>
-                                </div>
-                            </a>-->
+                                @foreach ($latests as $product)
+                                    @if ($count < 3)
+                                        <a href="shopdetails/{{ $product->id }}" class="latest-product__item">
+                                            <div class="latest-product__item__pic">
+                                                <img src="{{ $product->product_thumbnail }}" alt="">
+                                            </div>
+                                            <div class="latest-product__item__text">
+                                                <h6>{{ $product->product_name }}</h6>
+                                                <span>₱ {{ $product->product_price }}</span>
+                                            </div>
+                                        </a>
+                                    @endif
+                                    @php
+                                        $count++;
+                                    @endphp
+                                @endforeach
+                            @else
+                                <a href="#" class="latest-product__item">
+                                    <div class="latest-product__item__pic">
+                                        <img src="img/latest-product/lp-1.jpg" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <h6>Crab Pool Security</h6>
+                                        <span>$30.00</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="latest-product__item">
+                                    <div class="latest-product__item__pic">
+                                        <img src="img/latest-product/lp-2.jpg" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <h6>Crab Pool Security</h6>
+                                        <span>$30.00</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="latest-product__item">
+                                    <div class="latest-product__item__pic">
+                                        <img src="img/latest-product/lp-3.jpg" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <h6>Crab Pool Security</h6>
+                                        <span>$30.00</span>
+                                    </div>
+                                </a>
+                            @endif
                         </div>
                         <div class="latest-prdouct__slider__item">
-                            @php
-                                $count = 0;
-                            @endphp
-                            @foreach ($latests as $product)
-                                @if ($count > 2)
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="{{ $product->product_thumbnail }}" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>{{ $product->product_name }}</h6>
-                                            <span>₱ {{ $product->product_price }}</span>
-                                        </div>
-                                    </a>
-                                @endif
+                            @if ($latests)
                                 @php
-                                    $count++;
+                                    $count = 0;
                                 @endphp
-                            @endforeach
+                                @foreach ($latests as $product)
+                                    @if ($count > 2)
+                                        <a href="shopdetails/{{ $product->id }}" class="latest-product__item">
+                                            <div class="latest-product__item__pic">
+                                                <img src="{{ $product->product_thumbnail }}" alt="">
+                                            </div>
+                                            <div class="latest-product__item__text">
+                                                <h6>{{ $product->product_name }}</h6>
+                                                <span>₱ {{ $product->product_price }}</span>
+                                            </div>
+                                        </a>
+                                    @endif
+                                    @php
+                                        $count++;
+                                    @endphp
+                                @endforeach
+                            @else
+                                <a href="#" class="latest-product__item">
+                                    <div class="latest-product__item__pic">
+                                        <img src="img/latest-product/lp-1.jpg" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <h6>Crab Pool Security</h6>
+                                        <span>$30.00</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="latest-product__item">
+                                    <div class="latest-product__item__pic">
+                                        <img src="img/latest-product/lp-2.jpg" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <h6>Crab Pool Security</h6>
+                                        <span>$30.00</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="latest-product__item">
+                                    <div class="latest-product__item__pic">
+                                        <img src="img/latest-product/lp-3.jpg" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <h6>Crab Pool Security</h6>
+                                        <span>$30.00</span>
+                                    </div>
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>

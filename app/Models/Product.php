@@ -8,8 +8,7 @@ use App\Models\Images;
 use App\Models\Department;
 use App\Models\Category;
 use App\Models\AppUser;
-use App\Models\Banner;
-use Hamcrest\Core\HasToString;
+use App\Models\Review;
 
 class Product extends Model
 {
@@ -56,7 +55,11 @@ class Product extends Model
     }
 
     public function related_products($category_id){
-        $products = Product::all()->where('product_category_id', '=', $category_id);
+        $products = Product::all()->where('product_category_id', '=', $category_id)->take(4);
         return  $products;
     }
+    public function reviews(){
+        return $this->hasMany(Review::class);
+    }
+
 }

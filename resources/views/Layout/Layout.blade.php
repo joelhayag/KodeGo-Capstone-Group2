@@ -11,6 +11,8 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
@@ -136,7 +138,7 @@
                             <a href="{{ route('home') }}"><img src="/img/logo.png" alt=""></a>
                         </div>
                         <ul>
-                            <li>Address: {{ $settings->app_name }}</li>
+                            <li>Address: {{ $settings->app_address }}</li>
                             <li>Phone: {{ $settings->app_mobile }}</li>
                             <li>Email: {{ $settings->app_email }}</li>
                         </ul>
