@@ -62,4 +62,12 @@ class Product extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function rating(){
+        $rating_value = 0;
+        for($i = 0; $i < count($this->reviews); $i++){
+            $rating_value += $this->reviews[$i]->rating;
+        }
+        return count($this->reviews) != 0 ? ($rating_value / count($this->reviews)) : 0;
+    }
+
 }

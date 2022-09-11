@@ -42,12 +42,17 @@
                 <div class="product__details__text">
                     <h3>{{ $product ? $product->product_name : 'Product Name' }}</h3>
                     <div class="product__details__rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <span>(18 reviews)</span>
+                        @php
+                            $rating = $product ? $product->rating() : 0;
+                        @endphp
+                        @for ($i = 0; $i < 5; $i++)
+                            @if ($i < $rating)
+                                <span class=""><i class="text-warning fa fa-star"></i></span>
+                            @else
+                                <span class=""><i class="fa fa-star" style="color: gray"></i></span>
+                            @endif
+                        @endfor
+                        <span>({{ $product ? count($product->reviews) : 0 }} reviews)</span>
                     </div>
                     <div class="product__details__price">₱ {{ $product ? $product->product_price : '0' }}</div>
                     <p>{{ $product ? $product->product_desc : 'Product description' }}</p>
@@ -97,17 +102,33 @@
                         </div>
                         <div class="tab-pane" id="tabs-2" role="tabpanel">
                             <div class="product__details__tab__desc">
-                                <h6>Products Reviews</h6>
+                                <div class="d-flex">
+                                    <h6>Products Reviews</h6>
+                                    <span class="ml-auto"> <a href="#" class="primary-btn" class="btn btn-primary"
+                                            data-toggle="modal" data-target="#exampleModal">Add review</a></span>
+                                </div>
                                 @if ($product)
-                                    @foreach ($product->reviews as $review)
-                                        <div class="card mb-2">
+                                    @foreach ($product->reviews->reverse() as $review)
+                                        <div class="card mb-2" style="position: relative">
+                                            @if ($review->customer_id == 1)
+                                                <span class=""
+                                                    style="position: absolute; right: 0; margin-right: 7px; cursor: pointer">
+                                                    <form action="{{ route('deleteReview') }}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" value="{{ $review->id }}"
+                                                            name="review_id">
+                                                        <button type="submit"
+                                                            style="color: red; border: none; background-color: transparent">✖</button>
+                                                    </form>
+                                                </span>
+                                            @endif
                                             <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-md-1">
+                                                <div class="row d-flex">
+                                                    <div class="col-1">
                                                         <img src="https://image.ibb.co/jw55Ex/def_face.jpg"
-                                                            class="img img-rounded img-fluid" />
+                                                            class="img img-rounded" />
                                                     </div>
-                                                    <div class="col-md-10">
+                                                    <div class="col">
                                                         <p>
                                                             <span
                                                                 class="float-left"><strong>{{ $review->customer->first_name . ' ' . $review->customer->last_name }}</strong></span>
@@ -146,6 +167,7 @@
         </div>
     </div>
 </section>
+@include('Layout.Shop.Modal.AddReview')
 
 <section class="related-product">
     <div class="container">
