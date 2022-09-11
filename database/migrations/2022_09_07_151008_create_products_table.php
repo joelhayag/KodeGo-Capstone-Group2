@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('product_name');
             $table->string('product_thumbnail');
 
-            $table->string('product_desc');
+            $table->longText('product_desc');
             $table->integer('product_price');
             $table->float('product_weight');
             $table->integer('product_quantity');

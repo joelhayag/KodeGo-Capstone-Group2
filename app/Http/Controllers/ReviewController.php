@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Review;
 
 class ReviewController extends Controller
 {
@@ -21,9 +22,23 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $review = new Review;
+        $review->review= $request->review;
+        $review->rating= $request->rate_value;
+        $review->product_id= $request->product_id;
+        $review->customer_id= 1;
+        $review->save();
+
+        return redirect()->back();
+    }
+
+    public function delete(Request $request){
+        $review = Review::find($request->review_id);
+        $review->delete();
+
+        return redirect()->back();
     }
 
     /**
@@ -79,6 +94,6 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-        //
+
     }
 }

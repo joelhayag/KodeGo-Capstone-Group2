@@ -8,6 +8,9 @@ use App\Models\Department;
 use App\Models\Category;
 use App\Models\Product;
 
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\CartController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,6 +50,15 @@ Route::get('shopdetails/{id}', function ($id) {
         ->with('product', Product::find($id));
 })->name('shopdetails');
 
+Route::post('addReview',
+    [ReviewController::class, 'create']
+)->name('addReview');
+
+Route::post('deleteReview',
+    [ReviewController::class, 'delete']
+)->name('deleteReview');
+
+
 Route::get('/cart', function () {
     return view('Layout.Shop')
         ->with('settings', Setting::first())
@@ -54,6 +66,11 @@ Route::get('/cart', function () {
         ->with('departments', Department::all()->where('department_status', '=', 'passed'))
         ->with('categories', Category::all()->where('category_status', '=', 'passed'));
 })->name('cart');
+
+Route::get('addToCart/{id}/{quantity}',
+    [CartController::class, 'addToCart']
+)->name('addToCart');
+
 
 Route::get('/checkout', function () {
     return view('Layout.Shop')
@@ -88,7 +105,13 @@ Route::get('/contact', function () {
 })->name('contact');
 
 
+//login
+Route::get('/welcome', function () {
+    return view('welcome');
+});
+
 // Admin
 Route::get('/admin', function () {
     return view('Layout.Admin.DashboardAdmin');
 })->name('admin');
+
