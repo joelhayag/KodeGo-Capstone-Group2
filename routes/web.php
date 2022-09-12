@@ -38,7 +38,8 @@ Route::get('/shop', function () {
         ->with('settings', Setting::first())
         ->with('socials', Social::all())
         ->with('departments', Department::all()->where('department_status', '=', 'passed'))
-        ->with('categories', Category::all()->where('category_status', '=', 'passed'));
+        ->with('categories', Category::all()->where('category_status', '=', 'passed'))
+        ->with('latests', Product::all()->sortByDesc('id')->take(9));
 })->name('shop');
 
 Route::get('shopdetails/{id}', function ($id) {

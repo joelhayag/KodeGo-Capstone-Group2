@@ -67,18 +67,7 @@
                 </nav>
             </div>
             <div class="col-lg-3">
-                <div class="header__cart">
-                    <ul>
-                        @php $total = 0; $count = 0; @endphp
-
-                        @foreach ((array) session('cart') as $id => $details)
-                            @php $total += $details['price'] * $details['quantity']; $count++; @endphp
-                        @endforeach
-                        <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-bag"></i> <span>{{ $count }}</span></a></li>
-                    </ul>
-                    <div class="header__cart__price">item: <span>{{ $total }}</span></div>
-                </div>
+                @livewire('cart-counter')
             </div>
         </div>
         <div class="humberger__open">
