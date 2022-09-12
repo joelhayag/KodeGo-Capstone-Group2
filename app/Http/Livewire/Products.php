@@ -15,18 +15,6 @@ class Products extends Component
 
         $cart = session('cart');
 
-        if (!$cart) {
-            $cart = [
-                $id => [
-                    "name" => $product->product_name,
-                    "quantity" => 1,
-                    "price" => $product->product_price,
-                    "photo" => $product->product_thumbnail
-                ]
-            ];
-            session(['cart' => $cart]);
-        }
-
         if (isset($cart[$id])) {
             $cart[$id]['quantity'] = (int)$cart[$id]['quantity'] + 1;
             session(['cart' => $cart]);

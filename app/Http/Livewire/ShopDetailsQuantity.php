@@ -26,18 +26,6 @@ class ShopDetailsQuantity extends Component
 
         $cart = session('cart');
 
-        if (!$cart) {
-            $cart = [
-                $this->product_id => [
-                    "name" => $product->product_name,
-                    "quantity" => $this->count,
-                    "price" => $product->product_price,
-                    "photo" => $product->product_thumbnail
-                ]
-            ];
-            session(['cart' => $cart]);
-        }
-
         if (isset($cart[$this->product_id])) {
             $cart[$this->product_id]['quantity'] = (int)$cart[$this->product_id]['quantity'] + $this->count;
             session(['cart' => $cart]);

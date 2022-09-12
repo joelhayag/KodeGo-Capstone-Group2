@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Product;
+use App\Models\PromoSale;
+use Illuminate\Support\Carbon;
 
 class ProductInCart extends Component
 {
@@ -35,7 +37,26 @@ class ProductInCart extends Component
     }
     public function render()
     {
+        $sale = PromoSale::all()->sortByDesc('id')->first();
+
+        if ($sale) {
+            $end_date = Carbon::parse($sale->sale_start_date);
+
+            $current = Carbon::now();
+            $length = $current->diffInDays($end_date, false);
+
+            if($length < 1){
+                $end_date = Carbon::parse($sale->sale_end_date);
+                $length = $current->diffInDays($end_date, false);
+
+                if($length < 0){
+                    $sale = null;
+                }
+            }
+        }
+
         return view('livewire.product-in-cart')
-        ->with('products', session('cart'));
+        ->with('products', session('cart'))
+        ->with('sale', $sale);
     }
 }

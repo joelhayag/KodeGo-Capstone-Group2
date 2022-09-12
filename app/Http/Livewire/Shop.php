@@ -11,6 +11,25 @@ use Illuminate\Support\Carbon;
 
 class Shop extends Component
 {
+    public function addToCart($id)
+    {
+        $product = Product::find($id);
+
+        $cart = session('cart');
+
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity'] = (int)$cart[$id]['quantity'] + 1;
+            session(['cart' => $cart]);
+        } else {
+            $cart[$id] = [
+                "name" => $product->product_name,
+                "quantity" => 1,
+                "price" => $product->product_price,
+                "photo" => $product->product_thumbnail
+            ];
+            session()->put('cart', $cart);
+        }
+    }
     public function render()
     {
         $sale = PromoSale::all()->sortByDesc('id')->first();

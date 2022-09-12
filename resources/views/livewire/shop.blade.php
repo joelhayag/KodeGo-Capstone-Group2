@@ -163,9 +163,11 @@
         <div class="col-lg-9 col-md-7">
 
             <div class="filter__item">
-                <div class="section-title product__discount__title">
-                    <h2>Sale Off</h2>
-                </div>
+                @if ($sale)
+                    <div class="section-title product__discount__title">
+                        <h2>Sale Off</h2>
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-lg-4 col-md-5">
                         <div class="filter__sort">
@@ -178,7 +180,7 @@
                     </div>
                     <div class="col-lg-4 col-md-4">
                         <div class="filter__found">
-                            <h6><span>16</span> Products found</h6>
+                            <h6><span>{{ count($products) }}</span> Products found</h6>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-3">
@@ -191,7 +193,7 @@
             </div>
             <div class="row">
                 @foreach ($products as $product)
-                    <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="col-lg-4 col-md-6 col-sm-6 mb-2">
                         <div class="product__discount__item">
                             <div class="product__discount__item__pic set-bg"
                                 data-setbg="/{{ $product->product_thumbnail }}">
@@ -200,17 +202,19 @@
                                 @endif
                                 <ul class="product__item__pic__hover">
                                     <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a type="button" wire:click="addToCart({{ $product->id }})"><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
                             <div class="product__discount__item__text">
-                                <h5><a href="#">{{ $product->product_name }}</a></h5>
+                                <h5><a href="shopdetails/{{ $product->id }}">{{ $product->product_name }}</a></h5>
 
                                 @if ($sale)
-                                    <div class="product__item__price">₱  {{ ($product->product_price - ($product->product_price * ($sale->sale_percentage / 100))) }}
-                                        <span>₱ {{ $product->product_price }}</span></div>
+                                    <div class="product__item__price">₱
+                                        {{ $product->product_price - $product->product_price * ($sale->sale_percentage / 100) }}
+                                        <span>₱ {{ $product->product_price }}</span>
+                                    </div>
                                 @else
-                                <div class="product__item__price">₱  {{ $product->product_price }} </div>
+                                    <div class="product__item__price">₱ {{ $product->product_price }} </div>
                                 @endif
 
                             </div>
