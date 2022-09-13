@@ -10,6 +10,7 @@ use App\Models\Product;
 
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,17 +30,48 @@ Route::get('/', function () {
         ->with('banners', Banner::first())
         ->with('departments', Department::all()->where('department_status', '=', 'passed'))
         ->with('categories', Category::all()->where('category_status', '=', 'passed'))
-        ->with('products', Product::all())
+        ->with('products', Product::orderBy('id', 'desc')->paginate(20))
         ->with('latests', Product::all()->sortByDesc('id')->take(9));
 })->name('home');
 
 Route::get('/shop', function () {
+
+    session()->put('sortBy', '');
+    $minPrice =  Product::all()->sortBy('product_price')->first()->product_price;
+    $maxPrice = Product::all()->sortByDesc('product_price')->first()->product_price;
+
     return view('Layout.Shop')
         ->with('settings', Setting::first())
         ->with('socials', Social::all())
         ->with('departments', Department::all()->where('department_status', '=', 'passed'))
-        ->with('categories', Category::all()->where('category_status', '=', 'passed'));
+        ->with('categories', Category::all()->where('category_status', '=', 'passed'))
+        ->with('latests', Product::all()->sortByDesc('id')->take(9))
+        ->with('products', Product::orderBy('id', 'desc')->paginate(20))
+        ->with('min', $minPrice)
+        ->with('max', $maxPrice);
 })->name('shop');
+
+Route::get('shop/{sort}', function ($sort) {
+
+    session()->put('sortBy', $sort);
+    $minPrice =  Product::all()->sortBy('product_price')->first()->product_price;
+    $maxPrice = Product::all()->sortByDesc('product_price')->first()->product_price;
+
+    return view('Layout.Shop')
+        ->with('settings', Setting::first())
+        ->with('socials', Social::all())
+        ->with('departments', Department::all()->where('department_status', '=', 'passed'))
+        ->with('categories', Category::all()->where('category_status', '=', 'passed'))
+        ->with('latests', Product::all()->sortByDesc('id')->take(9))
+        ->with('products', Product::orderBy('id', 'desc')->paginate(20))
+        ->with('min', $minPrice)
+        ->with('max', $maxPrice);
+})->name('shopSort');
+
+Route::post(
+    'sortPriceRange',
+    [ProductController::class, 'sort']
+)->name('priceRange');
 
 Route::get('shopdetails/{id}', function ($id) {
     return view('Layout.Shop')
@@ -50,11 +82,13 @@ Route::get('shopdetails/{id}', function ($id) {
         ->with('product', Product::find($id));
 })->name('shopdetails');
 
-Route::post('addReview',
+Route::post(
+    'addReview',
     [ReviewController::class, 'create']
 )->name('addReview');
 
-Route::post('deleteReview',
+Route::post(
+    'deleteReview',
     [ReviewController::class, 'delete']
 )->name('deleteReview');
 
@@ -67,7 +101,8 @@ Route::get('/cart', function () {
         ->with('categories', Category::all()->where('category_status', '=', 'passed'));
 })->name('cart');
 
-Route::get('addToCart/{id}/{quantity}',
+Route::get(
+    'addToCart/{id}/{quantity}',
     [CartController::class, 'addToCart']
 )->name('addToCart');
 
@@ -114,4 +149,3 @@ Route::get('/welcome', function () {
 Route::get('/admin', function () {
     return view('Layout.Admin.DashboardAdmin');
 })->name('admin');
-

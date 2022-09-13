@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/css/style.css" type="text/css">
+    @livewireStyles
 </head>
 
 <body>
@@ -224,10 +225,8 @@
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/myFunction.js"></script>
-    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    @livewireScripts
 </body>
 
 </html>
