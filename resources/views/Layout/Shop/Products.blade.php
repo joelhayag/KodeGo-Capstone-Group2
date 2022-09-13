@@ -24,7 +24,7 @@
                         <ul>
                             @if ($departments)
                                 @foreach ($departments as $department)
-                                    <li><a href="#">{{ $department->department_name }}</a></li>
+                                    <li><a href="{{ route('shop') }}">{{ $department->department_name }}</a></li>
                                 @endforeach
                             @else
                                 <li><a href="#">Fresh Meat</a></li>
@@ -127,7 +127,7 @@
                                         @endphp
                                         @foreach ($latests as $product)
                                             @if ($count > 2)
-                                                <a href="shopdetails/{{ $product->id }}" class="latest-product__item">
+                                                <a href="{{ url('shopdetails/'.$product->id) }}" class="latest-product__item">
                                                     <div class="latest-product__item__pic">
                                                         <img src="/{{ $product->product_thumbnail }}" alt="">
                                                     </div>
