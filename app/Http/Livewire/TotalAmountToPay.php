@@ -34,7 +34,7 @@ class TotalAmountToPay extends Component
             }
         }
         if($this->coupon){
-            $this->message = "Coupon Found";
+            $this->message = "Redeem Successfully";
             $this->isFound = true;
         }else{
             $this->message = "Invalid Code";

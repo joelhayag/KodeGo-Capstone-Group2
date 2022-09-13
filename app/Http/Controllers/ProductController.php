@@ -81,4 +81,18 @@ class ProductController extends Controller
     {
         //
     }
+
+
+
+
+    //new function
+    public function sort(Request $request){
+        $min = explode(" ", $request->min);
+        $max = explode(" ", $request->max);
+
+        session()->put('min', $min[1]);
+        session()->put('max', $max[1]);
+
+        return redirect()->back();
+    }
 }
