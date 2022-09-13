@@ -5,7 +5,7 @@
 <ul>
     @if ($departments)
         @foreach ($departments as $department)
-            <li><a href="#">{{ $department->department_name }}</a></li>
+            <li><a href="{{ route('shop') }}">{{ $department->department_name }}</a></li>
         @endforeach
     @else
         <li><a href="#">Fresh Meat</a></li>

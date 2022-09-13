@@ -11,6 +11,10 @@ use App\Models\Product;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ContactUsMailController;
+use App\Http\Controllers\ProceedCheckoutController;
+use App\Models\PromoSale;
+use Illuminate\Support\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -108,12 +112,53 @@ Route::get(
 
 
 Route::get('/checkout', function () {
+
+    $carts = session('cart');
+    $sale_discount =  session('sale_discount');
+    $coupon_discount = session('coupon_discount');
+    $total =  session('total');
+
+    $sale = PromoSale::all()->sortByDesc('id')->first();
+
+    foreach ((array) $carts as $key=>$cart) {
+        if ($sale) {
+            $end_date = Carbon::parse($sale->sale_start_date);
+
+            $current = Carbon::now();
+            $length = $current->diffInDays($end_date, false);
+
+            if ($length < 1) {
+                $end_date = Carbon::parse($sale->sale_end_date);
+                $length = $current->diffInDays($end_date, false);
+
+                if ($length < 0) {
+                    $sale = null;
+                }
+            } else {
+                $sale = null;
+            }
+        }
+        $carts[$key]['price'] = $sale ? ($cart['price'] - ($cart['price'] * ($sale->sale_percentage / 100))) * $cart['quantity'] : $cart['price'];
+    }
+
     return view('Layout.Shop')
         ->with('settings', Setting::first())
         ->with('socials', Social::all())
         ->with('departments', Department::all()->where('department_status', '=', 'passed'))
-        ->with('categories', Category::all()->where('category_status', '=', 'passed'));
+        ->with('categories', Category::all()->where('category_status', '=', 'passed'))
+        ->with('products', $carts)
+        ->with('amount', ['sale_discount' => $sale_discount,
+                          'coupon_discount' => $coupon_discount,
+                          'total' => $total ])
+        ->with('error', null);
 })->name('checkout');
+
+Route::post(
+    'proceedCheckout',
+    [ProceedCheckoutController::class, 'checkout']
+)->name('proceedCheckout');
+
+
 
 Route::get('/blog', function () {
     return view('Layout.Shop')
@@ -138,6 +183,11 @@ Route::get('/contact', function () {
         ->with('departments', Department::all()->where('department_status', '=', 'passed'))
         ->with('categories', Category::all()->where('category_status', '=', 'passed'));
 })->name('contact');
+
+Route::post(
+    '/contactSendEmail',
+    [ContactUsMailController::class, 'sendEmail']
+)->name('sendEmail');
 
 
 //login

@@ -85,6 +85,10 @@ class TotalAmountToPay extends Component
 
         $total = ($total - $coupon_discount) > -1 ? ($total - $coupon_discount) : 0;
 
+        session()->put('sale_discount', $sale_discount);
+        session()->put('coupon_discount', $coupon_discount);
+        session()->put('total', $total);
+
         $amount = [
             'subtotal' => $subtotal,
             'sale_discount' => $sale_discount,
