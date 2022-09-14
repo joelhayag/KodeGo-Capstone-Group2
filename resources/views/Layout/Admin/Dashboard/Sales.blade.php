@@ -1,35 +1,36 @@
 <div class="card">
-    <div class="card-header">
-        <h3 class="card-title">
-            <i class="fas fa-chart-pie mr-1"></i>
-            Sales
-        </h3>
-        <div class="card-tools">
-            <ul class="nav nav-pills ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#revenue-chart"
-                        data-toggle="tab">Area</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
-                </li>
-            </ul>
+    <div class="card-header border-0">
+        <div class="d-flex justify-content-between">
+            <h3 class="card-title">Sales</h3>
         </div>
-    </div><!-- /.card-header -->
+    </div>
     <div class="card-body">
-        <div class="tab-content p-0">
-            <!-- Morris chart - Sales -->
-            <div class="chart tab-pane active" id="revenue-chart"
-                style="position: relative; height: 300px;">
-                <canvas id="revenue-chart-canvas" height="300"
-                    style="height: 300px;"></canvas>
-            </div>
-            <div class="chart tab-pane" id="sales-chart"
-                style="position: relative; height: 300px;">
-                <canvas id="sales-chart-canvas" height="300"
-                    style="height: 300px;"></canvas>
-            </div>
+        <div class="d-flex">
+            <p class="d-flex flex-column">
+                <span class="text-bold text-lg">$18,230.00</span>
+                <span>Sales Over Time</span>
+            </p>
+            <p class="ml-auto d-flex flex-column text-right">
+                <span class="text-success">
+                    <i class="fas fa-arrow-up"></i> 33.1%
+                </span>
+                <span class="text-muted">Since last month</span>
+            </p>
         </div>
-    </div><!-- /.card-body -->
+      <!-- /.d-flex -->
+
+      <div class="position-relative mb-4">
+        <canvas id="sales-chart" height="200"></canvas>
+      </div>
+
+        <div class="d-flex flex-row justify-content-end">
+            <span class="mr-2">
+                <i class="fas fa-square text-primary"></i> This year
+            </span>
+
+            <span>
+                <i class="fas fa-square text-gray"></i> Last year
+            </span>
+        </div>
+    </div>
 </div>
-<!-- /.card -->
