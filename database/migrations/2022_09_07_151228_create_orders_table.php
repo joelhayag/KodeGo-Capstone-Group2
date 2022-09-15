@@ -23,7 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('order_customer_id');
             $table->foreign('order_customer_id')->references('id')->on('app_users');
 
-            $table->integer('order_delivery_date');
+            $table->dateTime('order_delivery_date');
             $table->enum('order_order_status', ['received', 'preparing', 'on the way', 'delivered']);
 
             $table->unsignedBigInteger('order_courier_id');
