@@ -19,8 +19,8 @@
         <div class="checkout__form">
             <h4>Billing Details</h4>
             @if ($error)
-                <div class="alert alert-warning" role="alert">
-                    This is a warning alert—check it out!
+                <div class="alert alert-danger" role="alert">
+                    {{ $error }}
                 </div>
             @endif
             <form action="{{ route('proceedCheckout') }}" method="POST">
@@ -49,11 +49,11 @@
                             <p>Address<span>*</span></p>
                             <input type="text" placeholder="Street Address" class="checkout__input__add"
                                 name="street" required>
-                            <input type="text" placeholder="Apartment, suite, unite ect (optinal)" name="appartment">
+                            <input type="text" placeholder="Apartment, suite, unite ect (optional)" name="apartment">
                         </div>
                         <div class="checkout__input">
                             <p>Town/City<span>*</span></p>
-                            <input type="text" name="city" required>
+                            <input type="text" name="town" required>
                         </div>
                         <div class="checkout__input">
                             <p>Country/State<span>*</span></p>
@@ -87,8 +87,8 @@
                         <p>Create an account by entering the information below. If you are a returning customer
                             please login at the top of the page</p>
                         <div class="checkout__input">
-                            <p>Account Password<span>*</span></p>
-                            <input type="text" name="password" required>
+                            <p>Account Password</p>
+                            <input type="text" name="password">
                         </div>
                         <div class="checkout__input">
                             <p>Order notes<span></span></p>

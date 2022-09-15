@@ -54,16 +54,18 @@ class Shop extends Component
         }
 
         $sort = session('sortBy');
-        $minPrice = session('min') == null ? Product::all()->sortBy('product_price')->first()->product_price : session('min');
-        $maxPrice = session('max') == null ? Product::all()->sortByDesc('product_price')->first()->product_price : session('max');
+        $minPrice = 0;
+        $maxPrice = 0;
+        if (Product::all()) {
+            $minPrice =  Product::all()->sortBy('product_price')->first()->product_price;
+            $maxPrice = Product::all()->sortByDesc('product_price')->first()->product_price;
+        }
 
-        session()->put('min', $minPrice);
-        session()->put('max', $maxPrice);
 
         switch ($sort) {
             case 'Name': {
                     $products = Product::whereBetween('product_price', [$minPrice, $maxPrice])
-                    ->orderBy('product_name', 'asc')->paginate(20);
+                        ->orderBy('product_name', 'asc')->paginate(20);
                     break;
                 }
             case 'HighToLow': {

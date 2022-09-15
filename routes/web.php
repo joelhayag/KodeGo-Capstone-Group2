@@ -58,16 +58,20 @@ Route::get('/shop', function () {
 Route::get('shop/{sort}', function ($sort) {
 
     session()->put('sortBy', $sort);
-    $minPrice =  Product::all()->sortBy('product_price')->first()->product_price;
-    $maxPrice = Product::all()->sortByDesc('product_price')->first()->product_price;
+    $minPrice = 0;
+    $maxPrice = 0;
+    if(Product::all()){
+        $minPrice =  Product::all()->sortBy('product_price')->first()->product_price;
+        $maxPrice = Product::all()->sortByDesc('product_price')->first()->product_price;
+    }
 
     return view('Layout.Shop')
         ->with('settings', Setting::first())
         ->with('socials', Social::all())
         ->with('departments', Department::all()->where('department_status', '=', 'passed'))
         ->with('categories', Category::all()->where('category_status', '=', 'passed'))
-        ->with('latests', Product::all()->sortByDesc('id')->take(9))
-        ->with('products', Product::orderBy('id', 'desc')->paginate(20))
+        ->with('latests', Product::all() ? Product::all()->sortByDesc('id')->take(9) : null)
+        ->with('products', Product::all() ? Product::orderBy('id', 'desc')->paginate(20) : null)
         ->with('min', $minPrice)
         ->with('max', $maxPrice);
 })->name('shopSort');
@@ -150,7 +154,7 @@ Route::get('/checkout', function () {
         ->with('amount', ['sale_discount' => $sale_discount,
                           'coupon_discount' => $coupon_discount,
                           'total' => $total ])
-        ->with('error', null);
+        ->with('error', session('error'));
 })->name('checkout');
 
 Route::post(
