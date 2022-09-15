@@ -43,7 +43,8 @@ Route::get('/shop', function () {
     session()->put('sortBy', '');
     $minPrice = 0;
     $maxPrice = 0;
-    if(Product::all()){
+    $products = Product::all();
+    if (count($products) > 0) {
         $minPrice =  Product::all()->sortBy('product_price')->first()->product_price;
         $maxPrice = Product::all()->sortByDesc('product_price')->first()->product_price;
     }
@@ -64,7 +65,8 @@ Route::get('shop/{sort}', function ($sort) {
     session()->put('sortBy', $sort);
     $minPrice = 0;
     $maxPrice = 0;
-    if(Product::all()){
+    $products = Product::all();
+    if (count($products) > 0) {
         $minPrice =  Product::all()->sortBy('product_price')->first()->product_price;
         $maxPrice = Product::all()->sortByDesc('product_price')->first()->product_price;
     }
