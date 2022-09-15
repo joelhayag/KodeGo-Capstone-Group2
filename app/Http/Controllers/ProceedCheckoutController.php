@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AppUser;
+use App\Models\Product;
 
 class ProceedCheckoutController extends Controller
 {
@@ -54,7 +55,14 @@ class ProceedCheckoutController extends Controller
             }else{
                 $user->save();
             }
+        }else{
+            $user->password = '';
+            $user->save();
         }
         return redirect()->back();
+    }
+    private function Order(){
+        $customer_id = Product::orderBy('id', 'desc')->first();
+
     }
 }

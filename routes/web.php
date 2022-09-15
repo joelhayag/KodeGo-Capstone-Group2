@@ -41,8 +41,12 @@ Route::get('/', function () {
 Route::get('/shop', function () {
 
     session()->put('sortBy', '');
-    $minPrice =  Product::all()->sortBy('product_price')->first()->product_price;
-    $maxPrice = Product::all()->sortByDesc('product_price')->first()->product_price;
+    $minPrice = 0;
+    $maxPrice = 0;
+    if(Product::all()){
+        $minPrice =  Product::all()->sortBy('product_price')->first()->product_price;
+        $maxPrice = Product::all()->sortByDesc('product_price')->first()->product_price;
+    }
 
     return view('Layout.Shop')
         ->with('settings', Setting::first())
