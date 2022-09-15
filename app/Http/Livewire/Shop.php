@@ -56,7 +56,8 @@ class Shop extends Component
         $sort = session('sortBy');
         $minPrice = 0;
         $maxPrice = 0;
-        if (Product::all()) {
+        $products = Product::all();
+        if (count($products) > 0) {
             $minPrice =  Product::all()->sortBy('product_price')->first()->product_price;
             $maxPrice = Product::all()->sortByDesc('product_price')->first()->product_price;
         }

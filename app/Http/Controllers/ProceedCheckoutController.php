@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AppUser;
 use App\Models\Product;
+use App\Models\Order;
+use Illuminate\Support\Carbon;
 
 class ProceedCheckoutController extends Controller
 {
@@ -59,10 +61,22 @@ class ProceedCheckoutController extends Controller
             $user->password = '';
             $user->save();
         }
+        $this->Order();
         return redirect()->back();
     }
     private function Order(){
-        $customer_id = Product::orderBy('id', 'desc')->first();
+        $customer_id = Product::orderBy('id', 'desc')->first()->id;
 
+        $carts = session('cart');
+        foreach ((array) $carts as $id => $product) {
+            $order = new Order;
+            $order->order_quantity = $product['quantity'];
+            $order->order_product_id = $id;
+            $order->order_customer_id = $customer_id;
+            $order->order_order_status = 'received';
+            $order->order_delivery_date = Carbon::now();
+            $order->order_courier_id = 1;
+            $order->save();
+        }
     }
 }
