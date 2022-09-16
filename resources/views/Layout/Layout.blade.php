@@ -14,14 +14,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <!-- Css Styles -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('/css/font-awesome.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('/css/elegant-icons.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('/css/nice-select.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('/css/jquery-ui.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('/css/owl.carousel.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('/css/slicknav.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}" type="text/css">
     @livewireStyles
 </head>
 
