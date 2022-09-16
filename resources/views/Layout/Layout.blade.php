@@ -134,7 +134,8 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="{{ route('home') }}"><img src="/img/logo.png" alt=""></a>
+                            <a href="{{ route('home') }}"><img src="{{ asset('/img/logo.png') }}"
+                                    alt=""></a>
                         </div>
                         <ul>
                             <li>Address: {{ $settings->app_address }}</li>

@@ -19,8 +19,8 @@
                         </div>
                         <div class="header__top__right__auth">
                             @if (session('longIn_user') != null)
-                            <a href="{{ route('orders') }}"><i class="fa fa-user"></i>
-                                Account</a>
+                                <a href="{{ route('orders') }}"><i class="fa fa-user"></i>
+                                    Account</a>
                             @else
                                 <a type="button" data-toggle="modal" data-target="#login"><i class="fa fa-user"></i>
                                     Login</a>
@@ -35,9 +35,7 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="{{ route('home') }}">
-                        <h2 class="text-center">{{ $settings->app_name }}</h2>
-                    </a>
+                    <a href="{{ route('home') }}"><img src="{{ asset('/img/logo.png') }}" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6">
