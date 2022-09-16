@@ -7,5 +7,5 @@
         </div>
     </div>
     <a type="button" class="primary-btn text-light" wire:click="addToCart">ADD TO CARD</a>
-    <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+    <a type="button" wire:click="addToFavorite({{ $product->id }})"><span class="icon_heart_alt"></span></a>
 </div>

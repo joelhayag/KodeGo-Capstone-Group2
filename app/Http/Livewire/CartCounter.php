@@ -42,6 +42,17 @@ class CartCounter extends Component
             }
             $count++;
         }
-        return view('livewire.cart-counter')->with('total', $total)->with('count', $count);
+
+        $favorites = session('favorite');
+        if($favorites){
+            $favorites = count($favorites);
+        }else{
+            $favorites = 0;
+        }
+
+        return view('livewire.cart-counter')
+        ->with('total', $total)
+        ->with('count', $count)
+        ->with('favorite', $favorites);
     }
 }

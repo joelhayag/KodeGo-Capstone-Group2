@@ -30,7 +30,10 @@ class AppUser extends Model
     public function orders(){
         return $this->belongsTo(Order::class);
     }
-
+    public function orderHistory($id){
+        $orders = Order::all()->where('order_customer_id', '=', $id);
+        return $orders;
+    }
     public function products(){
         return $this->belongsTo(Product::class);
     }

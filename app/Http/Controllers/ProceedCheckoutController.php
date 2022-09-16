@@ -7,6 +7,12 @@ use App\Models\AppUser;
 use App\Models\Product;
 use App\Models\Order;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Setting;
+use App\Models\Social;
+use App\Models\Banner;
+use App\Models\Department;
+use App\Models\Category;
 
 class ProceedCheckoutController extends Controller
 {
@@ -23,7 +29,13 @@ class ProceedCheckoutController extends Controller
     'address_town',
     'address_state',
     'address_code'*/
-    public function checkout(Request $request){
+    public function checkout(Request $request)
+    {
+        $carts = session('cart');
+
+        if(count((array) $carts) < 1){
+            return redirect()->back();
+        }
 
         $user = new AppUser;
         $user->first_name = $request->fname;
@@ -40,32 +52,43 @@ class ProceedCheckoutController extends Controller
         $user->address_state = $request->state;
         $user->address_code = $request->code;
 
-        if(session('error')){
+        if (session('error')) {
             session()->forget('error');
         }
 
-        if(empty($user->first_name) || empty($user->last_name) ||  empty($user->email_address) ||
-        empty($user->mobile_number) || empty($user->address_country) || empty($user->address_st) ||
-        empty($user->address_town) || empty($user->address_state) || empty($user->address_code)){
+        if (
+            empty($user->first_name) || empty($user->last_name) ||  empty($user->email_address) ||
+            empty($user->mobile_number) || empty($user->address_country) || empty($user->address_st) ||
+            empty($user->address_town) || empty($user->address_state) || empty($user->address_code)
+        ) {
             session()->put('error', 'Required field missing');
             return redirect()->back();
         }
-        if($request->isCreate != null){
-            if(empty($user->password)){
+        if ($request->isCreate != null) {
+            if (empty($user->password)) {
                 session()->put('error', 'Password missing');
                 return redirect()->back();
-            }else{
-                $user->save();
+            } else {
+
+                $app_user = AppUser::all()->where('mobile_number', '=', $request->phone)->where('email_address', '=', $request->email);
+                if (count($app_user) > 0) {
+                    session()->put('error', 'Account Already Exist');
+                    return redirect()->back();
+                }
+                $user->password = Hash::make($request->password);
             }
-        }else{
+        } else {
             $user->password = '';
-            $user->save();
         }
-        $this->Order();
-        return redirect()->back();
+
+        $user->save();
+        $this->Order($user->id);
+
+        session()->forget('cart');
+        return redirect('/');
     }
-    private function Order(){
-        $customer_id = Product::orderBy('id', 'desc')->first()->id;
+    private function Order($customer_id)
+    {
 
         $carts = session('cart');
         foreach ((array) $carts as $id => $product) {

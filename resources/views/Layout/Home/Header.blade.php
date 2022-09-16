@@ -18,7 +18,13 @@
                             @endforeach
                         </div>
                         <div class="header__top__right__auth">
-                            <a href="#"><i class="fa fa-user"></i> Login</a>
+                            @if (session('longIn_user') != null)
+                            <a href="{{ route('orders') }}"><i class="fa fa-user"></i>
+                                Account</a>
+                            @else
+                                <a type="button" data-toggle="modal" data-target="#login"><i class="fa fa-user"></i>
+                                    Login</a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -63,4 +69,5 @@
             <i class="fa fa-bars"></i>
         </div>
     </div>
+    @include('Layout.Shop.Modal.LogIn')
 </header>

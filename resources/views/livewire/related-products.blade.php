@@ -5,7 +5,7 @@
                 <div class="product__item">
                     <div class="product__item__pic set-bg" data-setbg="/{{ $product_->product_thumbnail }}">
                         <ul class="product__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li><a type="button" wire:click="addToFavorite({{ $product->id }})"><i class="fa fa-heart"></i></a></li>
                             <li><a type="button" wire:click="addToCart({{ $product_->id }})"><i
                                         class="fa fa-shopping-cart"></i></a></li>
                         </ul>

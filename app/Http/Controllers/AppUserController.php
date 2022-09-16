@@ -81,4 +81,8 @@ class AppUserController extends Controller
     {
         //
     }
+
+    public function login(Request $request){
+        dd($request->all());
+    }
 }

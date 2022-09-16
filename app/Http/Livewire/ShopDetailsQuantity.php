@@ -40,6 +40,18 @@ class ShopDetailsQuantity extends Component
         }
         $this->count = 1;
     }
+    public function addToFavorite($id)
+    {
+        $product = Product::find($id);
+
+        $favorite = session('favorite');
+
+        if (isset($favorite[$id])) {
+        } else {
+            $favorite[$id] = $product;
+            session()->put('favorite', $favorite);
+        }
+    }
 
     public function render()
     {
