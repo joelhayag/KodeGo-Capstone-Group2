@@ -34,10 +34,10 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-        <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="img/logo.png" alt="AlpreskoLogo" height="10%" width="10%">
-        </div>
+        {{-- <!-- Preloader -->
+        <div id="preloder">
+            <div class="loader"></div>
+        </div> --}}
 
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -48,7 +48,7 @@
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Home</a>
+                    <a href="{{ route('admin') }}" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -175,12 +175,6 @@
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true"
-                        href="#" role="button">
-                        <i class="fas fa-th-large"></i>
-                    </a>
-                </li>
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -225,8 +219,8 @@
                         <!-- Add icons to the links using the .nav-icon class
                         with font-awesome or any other icon font library -->
                         
-                        <li class="{{Route::is('admin') ? 'active' : ''}} nav-item">
-                            <a href="{{route('admin')}}" class="nav-link active">
+                        <li class="nav-item">
+                            <a href="{{route('admin')}}" class="{{Route::is('admin') ? 'active' : ''}} nav-link">
                                 <i class="nav-icon fas fa-gauge"> </i>
                                 <p>
                                     Dashboard
@@ -234,7 +228,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href=# class="nav-link">
+                            <a href="{{route('admin-products')}}" class="{{Route::is('admin-products') ? 'active' : ''}} nav-link">
                                 <i class="nav-icon fas fa-brands fa-product-hunt"> </i>
                                 <p>
                                     Products
@@ -242,7 +236,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href=# class="nav-link">
+                            <a href="{{route('admin-orders')}}" class="{{Route::is('admin-orders') ? 'active' : ''}} nav-link">
                                 <i class="nav-icon fas fa-cart-shopping"> </i>
                                 <p>
                                     Orders
@@ -250,7 +244,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href=# class="nav-link">
+                            <a href="{{route('admin-customers')}}" class="{{Route::is('admin-customers') ? 'active' : ''}} nav-link">
                                 <i class="nav-icon fas fa-person-walking-luggage"> </i>
                                 <p>
                                     Customers
@@ -262,6 +256,15 @@
                                 <i class="nav-icon fas fa-chart-simple"> </i>
                                 <p>
                                     Statistics
+                                </p>
+                            </a>
+                        </li>
+                        <hr>
+                        <li class="nav-item">
+                            <a href="{{route('admin-admins')}}" class="{{Route::is('admin-admins') ? 'active' : ''}} nav-link">
+                                <i class="nav-icon fas fa-person-shelter"> </i>
+                                <p>
+                                    Admins
                                 </p>
                             </a>
                         </li>
