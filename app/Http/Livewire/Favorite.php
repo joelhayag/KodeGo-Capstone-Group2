@@ -9,7 +9,7 @@ use App\Models\Product;
 use App\Models\PromoSale;
 use Illuminate\Support\Carbon;
 
-class Shop extends Component
+class Favorite extends Component
 {
 
     public function addToCart($id)
@@ -44,6 +44,7 @@ class Shop extends Component
         }
     }
 
+
     public function render()
     {
         $products = null;
@@ -65,46 +66,18 @@ class Shop extends Component
             }
         }
 
-        $sort = session('sortBy');
-        $minPrice = 0;
-        $maxPrice = 0;
-        $products = Product::all();
-        if (count($products) > 0) {
-            $minPrice =  Product::all()->sortBy('product_price')->first()->product_price;
-            $maxPrice = Product::all()->sortByDesc('product_price')->first()->product_price;
+        $favorites = session('favorite');
+        if($favorites != null){
+            $products = $favorites;
         }
 
 
-        switch ($sort) {
-            case 'Name': {
-                    $products = Product::whereBetween('product_price', [$minPrice, $maxPrice])
-                        ->orderBy('product_name', 'asc')->paginate(20);
-                    break;
-                }
-            case 'HighToLow': {
-                    $products = Product::whereBetween('product_price', [$minPrice, $maxPrice])
-                        ->orderBy('product_price', 'desc')->paginate(20);
-                    break;
-                }
-            case 'LowToHigh': {
-                    $products = Product::whereBetween('product_price', [$minPrice, $maxPrice])
-                        ->orderBy('product_price', 'asc')->paginate(20);
-                    break;
-                }
-            default: {
-                    $products = Product::whereBetween('product_price', [$minPrice, $maxPrice])
-                        ->orderBy('id', 'desc')->paginate(20);
-                    break;
-                }
-        }
 
-        return view('livewire.shop')
+        return view('livewire.favorite')
             ->with('departments', Department::all()->where('department_status', '=', 'passed'))
             ->with('categories', Category::all()->where('category_status', '=', 'passed'))
             ->with('latests', Product::all()->sortByDesc('id')->take(9))
             ->with('products', $products)
-            ->with('sale', $sale)
-            ->with('min', $minPrice)
-            ->with('max', $maxPrice);
+            ->with('sale', $sale);
     }
 }
