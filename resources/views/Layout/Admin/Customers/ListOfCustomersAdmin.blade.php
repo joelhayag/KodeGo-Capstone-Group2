@@ -1,17 +1,27 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Customers</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                    <li class="breadcrumb-item active">Customers</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
 <!-- Default box -->
 <div class="card">
 <div class="card-header">
     <h3 class="card-title">Customers Account</h3>
 
-    <div class="card-tools">
-        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-            <i class="fas fa-minus"></i>
-        </button>
-        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-            <i class="fas fa-times"></i>
-        </button>
-    </div>
-    <div class="pt-5">
+    <div>
         <a href="#" class="btn btn-sm btn-success float-right"> + Add Customer</a>
     </div>
 </div>
@@ -19,23 +29,14 @@
     <table class="table table-striped projects">
         <thead>
             <tr>
-                <th style="width: 10%">
-                    ID
-                </th>
-                <th style="width: 20%">
-                    Full Name
-                </th>
-                <th style="width: 15%">
-                    Username
-                </th>
-                <th style="width: 20%">
-                    Email
-                </th>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Username</th>
+                <th>Email</th>
                 <th style="width: 10%" class="text-center">
                     Active Status
                 </th>
-                <th style="width: 20%">
-                </th>
+                <th></th>
             </tr>
         </thead>
 
