@@ -222,5 +222,25 @@ Route::get('/orders', function () {
 
 // Admin
 Route::get('/admin', function () {
-    return view('Layout.Admin.DashboardAdmin');
+    return view('Layout.Admin.Admin');
 })->name('admin');
+
+Route::get('/admin-products', function () {
+    return view('Layout.Admin.Admin');
+})->name('admin-products');
+
+Route::get('/admin-orders', function () {
+    return view('Layout.Admin.Admin');
+})->name('admin-orders');
+
+Route::get('/admin-customers', function () {
+    return view('Layout.Admin.Admin');
+})->name('admin-customers');
+
+Route::get('/admin-statistics', function () {
+    return view('Layout.Admin.Admin');
+})->name('admin-statistics');
+
+Route::get('/admin-admins', function () {
+    return view('Layout.Admin.Admin');
+})->name('admin-admins');
