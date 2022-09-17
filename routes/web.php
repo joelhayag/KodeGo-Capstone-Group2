@@ -220,6 +220,8 @@ Route::get('/orders', function () {
         ->with('categories', Category::all()->where('category_status', '=', 'passed'));
 })->name('orders');
 
+
+
 // Admin
 Route::get('/admin', function () {
     return view('Layout.Admin.Admin');
@@ -244,3 +246,7 @@ Route::get('/admin-statistics', function () {
 Route::get('/admin-admins', function () {
     return view('Layout.Admin.Admin');
 })->name('admin-admins');
+
+Route::get('/admin-settings', function () {
+    return view('Layout.Admin.Admin');
+})->name('admin-settings');
